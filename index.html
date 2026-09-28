@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Repositório pessoal para organizar atividades do curso.">
+  <title>Portifolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <!-- index.html: estrutura visual do site. Aqui ficam menus, cards, formulários e modais. -->
+
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Navegação principal">
+      <div class="brand">
+        <div class="brand-mark">LS</div>
+        <div><strong>Portifolio</strong><small>atividades em ordem</small></div>
+      </div>
+
+      <nav class="primary-nav">
+        <button class="nav-item active" id="allActivitiesBtn">
+          <span class="nav-icon">⌘</span> Todas as atividades
+          <span class="nav-count" id="allCount">0</span>
+        </button>
+        <button class="nav-item" data-action="new">
+          <span class="nav-icon">＋</span> Nova atividade
+        </button>
+      </nav>
+
+      <div class="sidebar-section">
+        <div class="section-label">Matérias <span id="subjectCount">0</span></div>
+        <div id="subjectNav" class="subject-nav"></div>
+      </div>
+
+      <div class="sidebar-footer">
+        <span class="status-dot"></span>
+        <span>Dados salvos neste navegador</span>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="breadcrumb"><span>repositório</span><b>/</b><strong>atividades</strong></div>
+        <button class="mobile-menu" id="mobileMenu" aria-label="Abrir menu">☰</button>
+
+        <div class="profile-pill">
+          <button class="avatar avatar-button" id="profileButton" aria-label="Alterar foto do perfil">
+            <span id="profileInitial">?</span>
+            <img id="profilePhoto" alt="Foto do perfil">
+          </button>
+          <span id="profileName">Meu perfil</span>
+          <button id="profileEdit" class="icon-button" aria-label="Editar perfil">✎</button>
+          <input id="profilePhotoInput" type="file" accept="image/*" hidden>
+        </div>
+      </header>
+
+      <div class="content-wrap">
+        <section class="page-heading">
+          <div>
+            <p class="eyebrow">painel pessoal <span>•</span> atualizado agora</p>
+            <h1>Minhas atividades</h1>
+            <p class="subtitle">Um lugar simples para acompanhar tudo que você precisa entregar.</p>
+          </div>
+          <button class="button primary" data-action="new"><span>＋</span> Nova atividade</button>
+        </section>
+
+        <section class="stats-grid" aria-label="Resumo das atividades">
+          <article class="stat-card"><span class="stat-label">Total de atividades</span><strong id="totalStat">0</strong><span class="stat-meta">no repositório</span></article>
+          <article class="stat-card"><span class="stat-label">Pendentes</span><strong id="pendingStat">0</strong><span class="stat-meta warning">aguardando você</span></article>
+          <article class="stat-card"><span class="stat-label">Concluídas</span><strong id="completedStat">0</strong><span class="stat-meta success">bom trabalho</span></article>
+          <article class="stat-card"><span class="stat-label">Próximas datas</span><strong id="upcomingStat">0</strong><span class="stat-meta">nos próximos 7 dias</span></article>
+        </section>
+
+        <section class="toolbar" aria-label="Busca e filtros">
+          <label class="search-box">
+            <span>⌕</span>
+            <input id="searchInput" type="search" placeholder="Buscar por título, matéria, tags ou conteúdo...">
+          </label>
+          <div class="filter-group">
+            <select id="statusFilter" aria-label="Filtrar por status">
+              <option value="all">Todos os status</option>
+              <option value="pending">Pendentes</option>
+              <option value="completed">Concluídas</option>
+            </select>
+            <select id="subjectFilter" aria-label="Filtrar por matéria">
+              <option value="all">Todas as matérias</option>
+            </select>
+          </div>
+        </section>
+
+        <section class="list-heading">
+          <div><h2 id="listTitle">Todas as atividades</h2><span id="resultCount">0 itens</span></div>
+          <button class="sort-button" id="sortButton">Mais recentes ↕</button>
+        </section>
+
+        <section id="activityList" class="activity-list" aria-live="polite"></section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal para criar/editar uma atividade -->
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <div><p class="eyebrow" id="modalEyebrow">nova atividade</p><h2 id="modalTitle">Adicionar atividade</h2></div>
+        <button class="close-button" data-close-modal aria-label="Fechar">×</button>
+      </div>
+
+      <form id="activityForm">
+        <input type="hidden" id="activityId">
+        <div class="form-grid">
+          <label>Título
+            <input id="titleInput" required maxlength="100" placeholder="Ex.: Equações quadráticas">
+          </label>
+          <label>Matéria
+            <input id="subjectInput" required maxlength="60" placeholder="Ex.: Matemática">
+          </label>
+          <label class="full">Descrição
+            <textarea id="descriptionInput" rows="3" maxlength="300" placeholder="Um resumo rápido da atividade"></textarea>
+          </label>
+          <label class="full">Conteúdo / resposta
+            <textarea id="contentInput" rows="6" placeholder="Escreva o conteúdo, resposta ou observações..."></textarea>
+          </label>
+          <label>Data de entrega
+            <input id="dueDateInput" type="date">
+          </label>
+          <label>Status
+            <select id="statusInput">
+              <option value="pending">Pendente</option>
+              <option value="completed">Concluída</option>
+            </select>
+          </label>
+          <label class="full">Tags
+            <input id="tagsInput" placeholder="Separe as tags por vírgula">
+          </label>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="button ghost" data-close-modal>Cancelar</button>
+          <button type="submit" class="button primary">Salvar atividade</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- Modal para visualizar uma atividade -->
+  <div class="modal-backdrop" id="detailBackdrop" hidden>
+    <section class="modal detail-modal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+      <div class="modal-header">
+        <div><p class="eyebrow" id="detailSubject">matéria</p><h2 id="detailTitle">Atividade</h2></div>
+        <button class="close-button" data-close-detail aria-label="Fechar">×</button>
+      </div>
+      <div id="detailBody"></div>
+      <div class="modal-actions">
+        <button class="button danger ghost" id="deleteDetail">Excluir</button>
+        <span class="action-spacer"></span>
+        <button class="button ghost" id="toggleDetail">Marcar concluída</button>
+        <button class="button primary" id="editDetail">Editar</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script type="module" src="/java.js"></script>
+</body>
+</html>
