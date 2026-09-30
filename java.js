@@ -7,41 +7,515 @@
 const STORAGE_KEY = "reposchool.activities";
 const PROFILE_KEY = "reposchool.profile";
 const PHOTO_KEY = "reposchool.profilePhoto";
-
+const IMAGES_ROOT = "./images/"
+//Versionamento.
 const sampleActivities = [
   {
     id: createId(),
-    title: "Equações quadráticas",
-    subject: "Matemática",
-    description: "Resolver a lista de exercícios sobre fórmula de Bhaskara.",
-    content: "Resolver os exercícios 1 a 12 do capítulo 4 e registrar os cálculos no caderno.",
-    dueDate: "2026-09-30",
-    status: "pending",
-    tags: ["matemática", "álgebra"],
+    title: "Semana15",
+    subject: "Versionamento",
+    description: "tilização do Git para registrar e consultar diferentes versões do código.",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["Versionamento"],
+    createdAt: new Date().toISOString()
+  },
+ {
+    id: createId(),
+    title: "Semana16",
+    subject: "Versionamento",
+    description: "estudo de Trunk-based Development e dos problemas causados pela divergência entre branches.",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["Versionamento"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana17",
+    subject: "Versionamento",
+    description: "resolução de conflitos entre alterações de diferentes desenvolvedores e revisão de conceitos do GitHub.",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["Versionamento"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana18",
+    subject: "Versionamento",
+    description: "atividade com um pequeno código em Python relacionado ao material de versionamento.",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["Versionamento"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana19",
+    subject: "Versionamento",
+    description: "representação de um sistema de pedidos utilizando eventos e Apache Kafka.",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["Versionamento"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana20",
+    subject: "Versionamento",
+    description: "representação do fluxo de envio, validação e processamento de mensagens.",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["Versionamento"],
+    createdAt: new Date().toISOString()
+  },
+//Back-end
+  {
+    id: createId(),
+    title: "Semana15",
+    subject: "Back-end",
+    description: "criação de uma API com login, JWT, proteção de rotas e diferentes níveis de acesso.",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["backend"],
     createdAt: new Date().toISOString()
   },
   {
     id: createId(),
-    title: "Resumo de ecossistemas",
-    subject: "Biologia",
-    description: "Produzir um resumo visual sobre cadeias alimentares.",
-    content: "Pesquisar produtores, consumidores e decompositores. Incluir um exemplo de cadeia alimentar brasileira.",
-    dueDate: "2026-10-03",
-    status: "pending",
-    tags: ["biologia", "resumo"],
-    createdAt: new Date(Date.now() - 86400000).toISOString()
+    title: "Semana16",
+    subject: "Back-end",
+    description: "estudo de CORS, OAuth 2.0, JWT e segurança de APIs.",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["backend"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana17",
+    subject: "Back-end",
+    description: "studo de integração com APIs de terceiros, SDKs e tratamento de erros.",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["backend"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana19",
+    subject: "Back-end",
+    description: "atividade de backend cujo conteúdo está no arquivo DOCX do repositório.",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["backend"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana20",
+    subject: "Back-end",
+    description: "estudo de contêineres e Docker.",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["backend"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana21",
+    subject: "Back-end",
+    description: "estudo de Docker, Kubernetes, microsserviços, monitoramento e logs.",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["backend"],
+    createdAt: new Date().toISOString()
+  },
+//Front-end
+  {
+    id: createId(),
+    title: "Semana15",
+    subject: "Front-end",
+    description: "criação de uma galeria responsiva e otimizada com HTML, CSS Grid, responsividade e otimização",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    image: `${IMAGES_ROOT}/frontend/SEM15.jpg`,
+    tags: ["frontend"],
+    createdAt: new Date().toISOString()
   },
   {
     id: createId(),
-    title: "Leitura: Modernismo",
-    subject: "Literatura",
-    description: "Leitura e anotações do primeiro capítulo.",
-    content: "Anotar as características da primeira fase modernista e selecionar uma citação importante.",
-    dueDate: "2026-09-24",
-    status: "completed",
-    tags: ["literatura"],
-    createdAt: new Date(Date.now() - 172800000).toISOString()
-  }
+    title: "Semana16",
+    subject: "Front-end",
+    description: "criação de uma tela de login com interações e animações.",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["frontend"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana17",
+    subject: "Front-end",
+    description: "estudo de APIs, requisições, WebSocket e GraphQL.",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["frontend"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana19",
+    subject: "Front-end",
+    description: "criação de uma lista de tarefas usando React, Vite e Redux.",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["frontend"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana20",
+    subject: "Front-end",
+    description: "criação de uma página de produto com interações e animações.",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["frontend"],
+    createdAt: new Date().toISOString()
+  },
+//inteligencia-Artificial
+  {
+    id: createId(),
+    title: "Semana15",
+    subject: "Inteligência-Artificial",
+    description: "Uso de IA para interpretar sintomas e classificar riscos",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["IA"],
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: createId(),
+    title: "Semana16",
+    subject: "Inteligência-Artificial",
+    description: "Árvore de Decisão, treinamento, teste e acurácia.",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["IA"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana17",
+    subject: "Inteligência-Artificial",
+    description: "A atividade trabalhou com a preparação dos dados para modelos de Machine Learning",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["IA"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana18",
+    subject: "Inteligência-Artificial",
+    description: "Arquiteturas reativa, deliberativa e híbrida",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["IA"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana19",
+    subject: "Inteligência-Artificial",
+    description: "Classificação de riscos de IA pelo EU AI Act",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["IA"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana20",
+    subject: "Inteligência-Artificial",
+    description: "Memória de curto e longo prazo em agentes conversacionais",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["IA"],
+    createdAt: new Date().toISOString()
+  },
+//Projeto-multidiciplinar
+  {
+    id: createId(),
+    title: "Semana15",
+    subject: "Projeto-multidiciplinar",
+    description: "Avanço da documentação do tcc",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["TCC"],
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: createId(),
+    title: "Semana16",
+    subject: "Projeto-multidiciplinar",
+    description: "Avanço na programação do projeto",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["TCC"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana17",
+    subject: "Projeto-multidiciplinar",
+    description: "Pesquisa de campo para o projeto",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["TCC"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana18",
+    subject: "Projeto-multidiciplinar",
+    description: "Avanço da documentação",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["TCC"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana19",
+    subject: "Projeto-multidiciplinar",
+    description: "Avanço da documentação do projeto",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["TCC"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana20",
+    subject: "Projeto-multidiciplinar",
+    description: "Matriz swot do projeto",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["TCC"],
+    createdAt: new Date().toISOString()
+  },
+{
+    id: createId(),
+    title: "Semana21",
+    subject: "Projeto-multidiciplinar",
+    description: "Documentação final do projeto e link do repositorio do projeto",
+    content: "https://github.com/luig1b/3bim-.git",
+    dueDate: "",
+    status: "",
+    tags: ["TCC"],
+    createdAt: new Date().toISOString()
+  },
+//Modelagem
+  {
+    id: createId(),
+    title: "Semana15",
+    subject: "modelagem dados",
+    description: "Texto para atividade de modelagem",
+    content: "",
+    dueDate: "",
+    status: "",
+    image: `${IMAGES_ROOT}/modelagem/SEM15.png`,
+    tags: ["modelagem"],
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: createId(),
+    title: "Semana16",
+    subject: "modelagem dados",
+    description: "arquivo de texo com perguntas do roteiro",
+    content: "",
+    dueDate: "",
+    status: "",
+    image: `${IMAGES_ROOT}/modelagem/SEM16.png`,
+    tags: ["modelagem"],
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: createId(),
+    title: "Semana17",
+    subject: "modelagem dados",
+    description: "arquivo de texo com perguntas do roteiro",
+    content: "",
+    dueDate: "",
+    status: "",
+    image: `${IMAGES_ROOT}/modelagem/SEM17.png`,
+    tags: ["modelagem"],
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: createId(),
+    title: "Semana18",
+    subject: "modelagem dados",
+    description: "aplicando banco de dados",
+    content: "",
+    dueDate: "",
+    status: "",
+    image: `${IMAGES_ROOT}/modelagem/SEM18.png`,
+    tags: ["modelagem"],
+    createdAt: new Date().toISOString()
+  },
+ {
+    id: createId(),
+    title: "Semana19",
+    subject: "modelagem dados",
+    description: "Perrguntas ",
+    content: "",
+    dueDate: "",
+    status: "",
+    image: `${IMAGES_ROOT}/modelagem/SEM19.png`,
+    tags: ["modelagem"],
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: createId(),
+    title: "Semana20",
+    subject: "modelagem dados",
+    description: "aplicando banco de dados2",
+    content: "",
+    dueDate: "",
+    status: "",
+    image: `${IMAGES_ROOT}/modelagem/SEM20.png`,
+    tags: ["modelagem"],
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: createId(),
+    title: "Semana21",
+    subject: "modelagem dados",
+    description: "aplicando banco de dados3",
+    content: "",
+    dueDate: "",
+    status: "",
+    image: `${IMAGES_ROOT}/modelagem/SEM21.png`,
+    tags: ["modelagem"],
+    createdAt: new Date().toISOString()
+  },
+//mobile
+  {
+    id: createId(),
+    title: "Semana15",
+    subject: "mobile",
+    description: "Texto para atividade de mobile",
+    content: "",
+    dueDate: "",
+    status: "",
+    image: `${IMAGES_ROOT}/mobile/SEM15.png`,
+    tags: ["mobile"],
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: createId(),
+    title: "Semana16",
+    subject: "mobile",
+    description: "arquivo de texo com perguntas do roteiro",
+    content: "",
+    dueDate: "",
+    status: "",
+    image: `${IMAGES_ROOT}/mobile/SEM16.png`,
+    tags: ["mobile"],
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: createId(),
+    title: "Semana17",
+    subject: "mobile",
+    description: "Atividade de texto",
+    content: "",
+    dueDate: "",
+    status: "",
+    image: `${IMAGES_ROOT}/mobile/SEM17.png`,
+    tags: ["mobile"],
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: createId(),
+    title: "Semana18",
+    subject: "mobile",
+    description: "atividade em texto sobre api",
+    content: "",
+    dueDate: "",
+    status: "",
+    image: `${IMAGES_ROOT}/mobile/SEM18.png`,
+    tags: ["mobile"],
+    createdAt: new Date().toISOString()
+  },
+ {
+    id: createId(),
+    title: "Semana19",
+    subject: "mobile",
+    description: "Texto sobre lgpd",
+    content: "",
+    dueDate: "",
+    status: "",
+    image: `${IMAGES_ROOT}/mobile/SEM19.png`,
+    tags: ["mobile"],
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: createId(),
+    title: "Semana20",
+    subject: "mobile",
+    description: "Texto da atividade2",
+    content: "",
+    dueDate: "",
+    status: "",
+    image: `${IMAGES_ROOT}/mobile/SEM20.png`,
+    tags: ["modelage"],
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: createId(),
+    title: "Semana21",
+    subject: "modelagem dados",
+    description: "atividade aula 4, perguntas sobre um projeto",
+    content: "",
+    dueDate: "",
+    status: "",
+    image: `${IMAGES_ROOT}/mobile/SEM21.png`,
+    tags: ["modelagem"],
+    createdAt: new Date().toISOString()
+  },
+
 ];
 
 let activities = loadActivities();
@@ -64,7 +538,7 @@ function loadActivities() {
     console.error("Não foi possível carregar as atividades:", error);
   }
 
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(sampleActivities));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(   ));
   return sampleActivities;
 }
 
@@ -359,6 +833,11 @@ function openDetail(id) {
       <div class="detail-block">
         <h3>Conteúdo / resposta</h3>
         <p>${escapeHTML(activity.content || "Nenhum conteúdo adicionado.")}</p>
+      </div>
+
+      <div class="detail-block">
+        <h3>Evidência</h3>
+        <img src="${escapeHTML(activity.image)}">
       </div>
 
       <div class="tags">
