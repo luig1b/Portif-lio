@@ -1,4 +1,4 @@
-# RepoSchool — projeto Vite
+# Portifólio — projeto Vite
 
 ## Estrutura
 - index.html: estrutura da página.
